@@ -16,9 +16,44 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		
 		<script>
+			var operators = ['add', 'subtract', 'multiply', 'divide']
+			var resolvers = ['clear', 'equals']
+			add = function(a, b) {
+				return a + b;
+			}
+
+			multiply = function(a, b) {
+				return a * b;
+			}
+
+			divide = function(a, b) {
+				return a / b;
+			}
+
+			subtract = function(a, b) {
+				return a - b;
+			}
+
+			var entries = []
 			$(document).click(function(event) {
-			    console.log(event.target.id)
+				if(!resolvers.includes(event.target.id)) {
+				  entries.push(event.target.id)
+				}
 			});
+
+			$(function(){
+				$("#clear").click(function() {
+					entries = [];
+				})
+
+				$("#equals").click(function() {
+					var answer = window[entries[1]](Number(entries[0]), Number(entries[2]));
+					console.log(answer);
+					entries = [];
+				})
+			})
+
+
 		</script>
 
 	</head>
@@ -29,7 +64,7 @@
 				<div id = '1'>1</div>
 				<div id = '4'>4</div>
 				<div id = '7'>7</div>
-				<div id = 'Clear'>Clear</div>
+				<div id = 'clear'>Clear</div>
 			</div>
 			<div>	
 				<div id = '2'>2</div>
@@ -41,13 +76,13 @@
 				<div id = '3'>3</div>
 				<div id = '6'>6</div>
 				<div id = '9'>9</div>
-				<div id = '='>=</div>
+				<div id = 'equals'>=</div>
 			</div>
 			<div>
-				<div id = '+'>+</div>
-				<div id = '-'>-</div>
-				<div id = '*'>*</div>
-				<div id = '/'>/</div>
+				<div id = 'add'>+</div>
+				<div id = 'subtract'>-</div>
+				<div id = 'multiply'>*</div>
+				<div id = 'divide'>/</div>
 			</div>
 		</div>
 	</body>
