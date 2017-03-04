@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<style>
+			div {
+		    width: 400px;
+		    height: 600px;
+			}
+
+			div div {
+			    width: 100px;
+			    height: 100px;
+			    outline: 1px solid;
+			    float: left;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		
+		<script>
+			$(document).click(function(event) {
+			    console.log(event.target.id)
+			});
+		</script>
+
+	</head>
+
+	<body>
+		<div>
+			<div>
+				<div id = '1'>1</div>
+				<div id = '4'>4</div>
+				<div id = '7'>7</div>
+				<div id = 'Clear'>Clear</div>
+			</div>
+			<div>	
+				<div id = '2'>2</div>
+				<div id = '5'>5</div>
+				<div id = '8'>8</div>
+				<div id = '0'>0</div>
+			</div>
+			<div>
+				<div id = '3'>3</div>
+				<div id = '6'>6</div>
+				<div id = '9'>9</div>
+				<div id = '='>=</div>
+			</div>
+			<div>
+				<div id = '+'>+</div>
+				<div id = '-'>-</div>
+				<div id = '*'>*</div>
+				<div id = '/'>/</div>
+			</div>
+		</div>
+	</body>
+</html>
