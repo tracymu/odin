@@ -1,5 +1,13 @@
-      var operators = ['add', 'subtract', 'multiply', 'divide']
-      var resolvers = ['clear', 'equals']
+      var operators = {
+        'add' : '+', 
+        'subtract' : '-', 
+        'multiply' : '*', 
+        'divide' : '/' }
+
+      var resolvers = {
+        'clear' : 'C', 
+        'equals': '=' }
+
 
       add = function(a, b) {
         return a + b;
