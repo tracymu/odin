@@ -26,31 +26,35 @@
       }
 
       var entries = []
-
+      var number_entered = []
 
       $(document).click(function(event) {
-        if(!resolvers.includes(event.target.id)) {
-          entries.push(event.target.id)
+        if(!Object.keys(resolvers).includes(event.target.id) && !Object.keys(operators).includes(event.target.id)) {
+          number_entered.push(event.target.id)
+          $("#display").text(number_entered.join(""))
+        }
+        else if(Object.keys(operators).includes(event.target.id)) {
+          entries.push(number_entered);
+          entries.push(event.target.id);
+          number_entered = []
+          $("#display").text(operators[event.target.id])
         }
       });
 
       $(function(){
         $("#clear").click(function() {
+          number_entered = [];
           entries = [];
+          $("#display").empty();
         })
 
         $("#equals").click(function() {
-          var calcs = []
-          for(i = 0; i < entries.length; i++) {
-            if(!operators.includes(entries[i])) {
-              // something about adding the numbers until it gets to an operator
-              // but adding it to what?
-            }
+          if(entries.length > 2) {
+            var answer = window[entries[1]](Number(entries[0]), Number(entries[2]))
+            console.log(answer)
+            $("#display").text(answer)
+            number_entered = [];
+            entries = [];
           }
-
-
-          var answer = window[entries[1]](Number(entries[0]), Number(entries[2]));
-          console.log(answer);
-          entries = [];
         })
       })
