@@ -28,6 +28,22 @@
       var entries = []
       var number_entered = []
 
+        var clear_all = function() {
+          number_entered = [];
+          entries = [];
+          $("#display").empty();
+        }
+
+        var calculate = function(entries) {
+          if(entries.length > 2) {
+
+            var answer = window[entries[1]](Number(entries[0].join('')), Number(entries[2].join('')))
+            $("#display").text(answer)
+            number_entered = [];
+            entries = [];
+          }
+        }
+
       $(document).click(function(event) {
         if(!Object.keys(resolvers).includes(event.target.id) && !Object.keys(operators).includes(event.target.id)) {
           number_entered.push(event.target.id)
@@ -39,22 +55,14 @@
           number_entered = []
           $("#display").text(operators[event.target.id])
         }
+        else if(event.target.id == 'equals') {
+          entries.push(number_entered);
+          calculate(entries)
+        }
+        else if(event.target.id == 'clear') {
+          clear_all();
+        }
       });
 
-      $(function(){
-        $("#clear").click(function() {
-          number_entered = [];
-          entries = [];
-          $("#display").empty();
-        })
+      // $(function(){
 
-        $("#equals").click(function() {
-          if(entries.length > 2) {
-            var answer = window[entries[1]](Number(entries[0]), Number(entries[2]))
-            console.log(answer)
-            $("#display").text(answer)
-            number_entered = [];
-            entries = [];
-          }
-        })
-      })
