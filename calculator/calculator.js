@@ -1,68 +1,74 @@
-      var operators = {
-        'add' : '+', 
-        'subtract' : '-', 
-        'multiply' : '*', 
-        'divide' : '/' }
-
-      var resolvers = {
-        'clear' : 'C', 
-        'equals': '=' }
 
 
-      add = function(a, b) {
-        return a + b;
-      }
+add = function(a, b) {
+  return a + b;
+}
 
-      multiply = function(a, b) {
-        return a * b;
-      }
+multiply = function(a, b) {
+  return a * b;
+}
 
-      divide = function(a, b) {
-        return a / b;
-      }
+divide = function(a, b) {
+  return a / b;
+}
 
-      subtract = function(a, b) {
-        return a - b;
-      }
+subtract = function(a, b) {
+  return a - b;
+}
 
-      var entries = []
-      var number_entered = []
 
-        var clear_all = function() {
-          number_entered = [];
-          entries = [];
-          $("#display").empty();
-        }
+var clear_all = function() {
+  memory_number = '';
+  display_number = '';
+  operator = '';
+  $("#display").empty();
+}
 
-        var calculate = function(entries) {
-          if(entries.length > 2) {
+var calculate = function(num_one, num_two, operator) {
+  return window[operator](Number(num_one), Number(num_two))
+}
 
-            var answer = window[entries[1]](Number(entries[0].join('')), Number(entries[2].join('')))
-            $("#display").text(answer)
-            number_entered = [];
-            entries = [];
-          }
-        }
+var calculate_and_display = function(num_one, num_two, operator) {
+  answer = "" + calculate(num_one, num_two, operator);
+  $("#display").text(answer);
+  display_number = answer;
+}
 
-      $(document).click(function(event) {
-        if(!Object.keys(resolvers).includes(event.target.id) && !Object.keys(operators).includes(event.target.id)) {
-          number_entered.push(event.target.id)
-          $("#display").text(number_entered.join(""))
-        }
-        else if(Object.keys(operators).includes(event.target.id)) {
-          entries.push(number_entered);
-          entries.push(event.target.id);
-          number_entered = []
-          $("#display").text(operators[event.target.id])
-        }
-        else if(event.target.id == 'equals') {
-          entries.push(number_entered);
-          calculate(entries)
-        }
-        else if(event.target.id == 'clear') {
-          clear_all();
-        }
-      });
+var memory_number = '';
+var display_number = '';
+var operator;
+var answer;
 
-      // $(function(){
+$(document).ready(function() {
+
+  $('.number').click(function(event){
+    display_number += event.target.textContent;
+    $('#display').text(display_number);
+  })
+
+  $('.operator').click(function(event){
+    var answer;
+
+    if(memory_number.length && display_number.length) {
+      calculate_and_display(memory_number, display_number, operator);
+    }
+
+    if(display_number.length){
+      memory_number = display_number; 
+    }
+    display_number = ''; 
+    operator = event.target.id;
+  });
+
+  $('#clear').click(clear_all);
+
+  $('#equals').click(function() {
+    calculate_and_display(memory_number, display_number, operator)
+    memory_number = display_number;
+    operator = '';
+    display_number = '';
+
+  });
+
+});
 
