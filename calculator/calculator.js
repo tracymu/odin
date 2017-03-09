@@ -53,7 +53,9 @@ $(document).ready(function() {
       calculate_and_display(memory_number, display_number, operator);
     }
 
-    memory_number = display_number;
+    if(display_number.length){
+      memory_number = display_number; 
+    }
     display_number = ''; 
     operator = event.target.id;
   });
@@ -70,6 +72,3 @@ $(document).ready(function() {
 
 });
 
-
-//  use what is returned as equals
-// use multiple operators
