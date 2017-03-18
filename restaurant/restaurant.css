@@ -1,0 +1,32 @@
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+img {
+  height: 500px;
+  width: auto;
+}
+
+#content {
+  height: 100%;
+}
+
+#tab-content {
+  width: 600px;
+  margin: 40px;
+}
+
+.tabs li {
+  width: 100px;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+
+}
+
+li.active {
+  background-color: #e6d72a;
+}
+  
