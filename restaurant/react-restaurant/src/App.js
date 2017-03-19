@@ -5,31 +5,44 @@ class Page extends React.Component {
     super();
     // who knows what this is for
     this.state = { active: <Home />,
-                   tab: 'home' }
+                   clicked: false }
     this.showHome = this.showHome.bind(this)
     this.showOtters = this.showOtters.bind(this)
     this.showRaccoons = this.showRaccoons.bind(this)
+    this.updateTab = this.updateTab.bind(this)
+  }
+
+   updateTab(e){
+    var el = document.getElementsByClassName('active')[0]
+    if (el) {
+      el.classList.remove('active')
+    }
+    e.target.classList.add('active')
   }
 
   showHome(e){
     this.setState({
-      active: <Home/>
+      active: <Home/>,
     })
+    this.updateTab(e)
   }
 
   showOtters(e){
     this.setState({
-      active: <Otters/>
+      active: <Otters/>,
     })
+    this.updateTab(e)
   }
 
   showRaccoons(e){
     this.setState({
-      active: <Raccoons/>
+      active: <Raccoons/>,
     })
+    this.updateTab(e)
   }
 
   render(){
+
     return( <div className="content">
               <ul className='tabs'>
                 <li className='active' onClick={this.showHome}>Home</li>
