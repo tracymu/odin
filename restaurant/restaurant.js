@@ -12,7 +12,6 @@ function otters(){
       .append('<img src="http://img.huffingtonpost.com/asset/2000_1000/5751a756130000fb0738383d.jpeg?cache=2ainbbh601" />');
 }
 
-
 function raccoons(){
     $('#tab-content')
       .append('<h1>Racoons are also adorable</h1>')
