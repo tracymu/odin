@@ -1,0 +1,19 @@
+snake
+  direction
+  length
+  move
+  speed
+  head position
+
+grid
+  size
+  cell
+    fill
+
+food
+  move
+
+game
+  start
+  levels
+  game over

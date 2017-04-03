@@ -1,0 +1,9 @@
+td {
+  background-color: lavenderblush;
+  height: 20px;
+  width: 20px;
+}
+
+.snakeHead {
+  background-color: cyan;
+}
